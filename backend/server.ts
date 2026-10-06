@@ -78,6 +78,49 @@ app.post("/api/login", async(req, res) => {
     }
 });
 
+app.get("/api/inventaris", async (req, res) => {
+    try {
+        const [rows] = await db.query(
+            "SELECT * FROM inventaris"
+        );
+        res.json(rows);
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({
+            message: "gagal mengambil data inventaris"
+        });
+    }
+});
+
+app.post("/api/inventaris", async (req, res) => {
+    const {
+        nama_barang,
+        kategori,
+        jumlah,
+        kondisi,
+        lokasi,
+        tanggal_masuk,
+        petugas
+    } = req.body;
+
+    try {
+        await db.query(
+            `INSERT INTO inventaris (nama_barang, kategori, jumlah, kondisi, lokasi, tanggal_masuk, petugas) VALUES(?, ?, ?, ?, ?, ?, ?)`,
+            [nama_barang, kategori, jumlah, kondisi, lokasi, tanggal_masuk, petugas]
+        );
+        res.json({
+            message: "Data inventaris berhasil menambahkan"
+        });
+    } catch (error) {
+        console.error("ERROR INSERT", error);
+
+        res.status(500).json({
+            message: "Gagal menambahkan data inventaris",
+            error: String(error)
+        })
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server berjalan di http://localhost:${PORT}`);
 });
