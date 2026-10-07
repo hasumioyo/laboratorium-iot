@@ -1,0 +1,173 @@
+.inventaris-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+.inventaris-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.inventaris-header h1, .inventaris-header span {
+    margin: 0;
+}
+
+.inventaris-header h1 {
+    color: var(--text-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.inventaris-header span {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.inventaris-body {
+    padding: 30px;
+}
+
+.inventaris-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.inventaris-title h2 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.tambah-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tambah-button:hover {
+    background-color: var(--primary-hover);
+}
+
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.inventaris-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.inventaris-table th, .inventaris-table td {
+    padding: 13px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.inventaris-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 500;
+}
+
+.inventaris-table tbody tr:hover {
+    background-color: #f8f9fc;
+}
+
+.inventaris-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.edit-button, .delete-button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.edit-button {
+    margin-right: 5px;
+    background-color: var(--card-blue);
+}
+
+.delete-button {
+    background-color: var(--card-red);
+}
+
+.edit-button:hover, .delete-button:hover {
+    opacity: 0.85;
+}
+
+.inventaris-footer {
+    margin-top: auto;
+    padding: 20px;
+    color: var(--text-light);
+    text-align: center;
+    font-size: 12px;
+}
+
+@media (max-width: 1000px) {
+    .inventaris-body {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+    .inventaris-header {
+        padding: 0 20px;
+    }
+
+    .inventaris-body {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    .inventaris-header {
+        height: 60px;
+
+        padding: 0 15px;
+    }
+
+    .inventaris-header h1 {
+        font-size: 20px;
+    }
+
+    .inventaris-header span {
+        display: none;
+    }
+
+    .inventaris-body {
+        padding: 15px;
+    }
+
+    .inventaris-title {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .inventaris-table {
+        min-width: 900px;
+    }
+}

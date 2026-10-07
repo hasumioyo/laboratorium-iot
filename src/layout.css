@@ -1,0 +1,10 @@
+.layout-container {
+    min-height: 100vh;
+    display: flex;
+    background-color: var(--background-color);
+}
+
+.layout-content {
+    flex: 1;
+    min-width: 0;
+}

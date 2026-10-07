@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/login.css"
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    
     const [message, setMessage] = useState("");
-    const Navigate = useNavigate();
+    const [messageType, setMessageType] = useState(""); 
+    const navigate = useNavigate();
 
     const handleLogin = async(e: React.FormEvent) =>{
         e.preventDefault();
@@ -24,28 +27,65 @@ const Login = () => {
             
             const data = await response.json();
 
-            if(response.ok) {
+           if (response.ok) {
                 setMessage("Login berhasil!");
-                Navigate("dashboard");
+                setMessageType("success");
+
+                sessionStorage.setItem(
+                    "user",
+                    JSON.stringify(data.user)
+                );
+
+                setTimeout(() => {
+                    navigate("/dashboard");
+                }, 1000);
+
             } else {
                 setMessage(data.message);
+                setMessageType("danger");
             }
-        } catch {
-            setMessage("Tidak dapat terhubung ke server");
+
+        } catch (error) {
+            console.error(error);
+
+            setMessage(
+                "Tidak dapat terhubung ke server"
+            );
+
+            setMessageType("danger");
         }
     };
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <>
+        <div className="login-container">
+            <div className="login-box">
+                <h1>DATA INVENTARIS</h1>
+                <p>LABORATORIUM IOT</p>
+                {message && (
+                    <div
+                        className={`alert alert-${messageType}`}
+                        role="alert"
+                    >
+                        {message}
+                    </div>
+                )}
+                <form onSubmit={handleLogin}>
+                    <div className="login-group">
+                        <label>Username</label>
+                        <input type="text" placeholder="Masukkan username" value={username} onChange={(e) => setUsername(e.target.value)} required/>
+                    </div>
+                    <div className="login-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Masukkan password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
 
-                <button type="submit">Login</button>
-            </form>
-            <p>{message}</p>
+            </div>
+
         </div>
+        </>
     );
 };
 

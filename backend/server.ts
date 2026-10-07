@@ -121,6 +121,83 @@ app.post("/api/inventaris", async (req, res) => {
     }
 })
 
+app.get("/api/inventaris/:id", async (req, res) => {
+    const {id} = req.params;
+
+    try{
+        const [rows] : any = await db.query(
+            'SELECT * FROM inventaris WHERE id = ?', 
+            [id]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                message: "Data inventaris tidak ditemukan"
+            });
+        }
+
+        res.json(rows[0]);
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: "Gagal mengambil data inventaris"
+        })
+    }
+});
+
+app.put("/api/inventaris/:id", async (req, res) => {
+    const {id} = req.params;
+
+    const {
+        nama_barang, 
+        kategori, 
+        jumlah, 
+        kondisi, 
+        lokasi, 
+        tanggal_masuk, 
+        petugas
+    } = req.body;
+
+
+    try{
+         await db.query(
+            `UPDATE inventaris SET nama_barang = ?, kategori = ?, jumlah = ?, kondisi = ?, lokasi = ?, tanggal_masuk = ?, petugas = ? WHERE id = ?`,
+            [nama_barang, kategori, jumlah, kondisi, lokasi, tanggal_masuk, petugas, id]
+        );
+         res.json({
+            message: "Data inventaris berhasil diperbarui"
+        });
+
+    } catch (error) {
+        console.error("UPDATE ERROR : ", error);
+
+        res.status(500).json({
+            message: "Gagal memperbarui data inventaris"
+        })
+    }
+}); 
+
+
+app.delete("/api/inventaris/:id", async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        await db.query(
+            `DELETE FROM INVENTARIS WHERE id = ?`, [id]
+        );
+
+        res.json({
+            message: "Data inventaris berhasil dihapus"
+        })
+    } catch (error) {
+        console.error("DELETE ERROR : ", error);
+
+        res.status(500).json({
+            message: "Gagal menghapus data inventaris"
+        })
+    }
+})
 app.listen(PORT, () => {
     console.log(`Server berjalan di http://localhost:${PORT}`);
 });
