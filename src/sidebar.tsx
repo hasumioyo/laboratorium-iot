@@ -8,10 +8,8 @@ const Sidebar = () => {
     
 
     const handleLogout = () => {
-        localStorage.removeItem("user");
-        navigate("/", {
-            replace: true
-        });
+        sessionStorage.removeItem("user");
+        navigate("/");
     };
 
     return (
