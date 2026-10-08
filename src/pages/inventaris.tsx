@@ -47,7 +47,6 @@ const Inventaris = () => {
                         (barang) => barang.id !== id
                     )
                 );
-
                 setMessage(data.message);
                 setMessageType("success");
 

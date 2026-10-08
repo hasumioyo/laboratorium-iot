@@ -1,0 +1,121 @@
+.pengguna-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+.pengguna-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pengguna-header h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.pengguna-header span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.pengguna-body {
+    padding: 30px;
+}
+
+.pengguna-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pengguna-title h2 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.tambah-button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tambah-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.table-container {
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pengguna-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.pengguna-table th,
+.pengguna-table td {
+    padding: 13px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.pengguna-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 500;
+}
+
+.edit-button,
+.delete-button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.edit-button {
+    margin-right: 5px;
+    background-color: var(--card-blue);
+}
+
+.delete-button {
+    background-color: var(--card-red);
+}
+
+.edit-button:hover {
+    opacity: 0.9;
+}
+
+.delete-button:hover {
+    opacity: 0.9;
+}
+
+.pengguna-footer {
+    margin-top: auto;
+    padding: 20px 30px;
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 12px;
+}

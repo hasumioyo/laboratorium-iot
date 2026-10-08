@@ -1,0 +1,119 @@
+.tambah-pengguna-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+.tambah-pengguna-header {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tambah-pengguna-header h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.tambah-pengguna-header span {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.tambah-pengguna-body {
+    padding: 25px 30px;
+}
+
+.pengguna-form-container {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pengguna-form-container h2 {
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pengguna-form-group {
+    margin-bottom: 12px;
+}
+
+.pengguna-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pengguna-form-group input, .pengguna-form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.pengguna-form-group input:focus, .pengguna-form-group select:focus {
+    border-color: var(--primary-color);
+}
+
+.pengguna-form-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+.batal-button, .simpan-button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.batal-button {
+    background-color: #6c757d;
+}
+
+.simpan-button {
+    background-color: var(--primary-color);
+}
+
+.batal-button:hover {
+    opacity: 0.9;
+}
+
+.simpan-button:hover {
+    background-color: var(--primary-hover);
+}
+
+.tambah-pengguna-footer {
+    margin-top: auto;
+    padding: 20px 30px;
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 12px;
+}

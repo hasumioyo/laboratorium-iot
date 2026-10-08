@@ -8,6 +8,9 @@ const EditInventaris = () => {
 
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState(""); 
+
+    const user = sessionStorage.getItem("user");
+    const dataUser = user ? JSON.parse(user) : null;
     
     const [nama_barang, setNamaBarang] = useState("");
     const [kategori, setKategori] = useState("");
@@ -16,6 +19,12 @@ const EditInventaris = () => {
     const [lokasi, setLokasi] = useState("");
     const [tanggal_masuk, setTanggalMasuk] = useState("");
     const [petugas, setPetugas] = useState("");
+    const [daftarPetugas, setDaftarPetugas] = useState<{
+        id: string;
+        username: string;
+        level: string;
+        }[]
+    >([]);
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/inventaris/${id}`).then((response) => response.json()).then((data) => {
@@ -26,11 +35,27 @@ const EditInventaris = () => {
             setLokasi(data.lokasi);
             setTanggalMasuk(data.tanggal_masuk.slice(0,10));
             setPetugas(data.petugas);
+            
         })
         .catch((error) => {
             console.error(error)
         })
     }, [id]);
+
+     fetch("http://localhost:3000/api/admin") .then((response) => response.json()).then((data) => {
+            const petugas = data.filter(
+                (user: {
+                    id: string;
+                    username: string;
+                    level: string;
+                }) => user.level === "Petugas"
+            );
+
+            setDaftarPetugas(petugas);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 
     const handleSubmit = async(e: React.FormEvent) => {
         e.preventDefault();
@@ -66,8 +91,8 @@ const EditInventaris = () => {
             <header className="edit-header">
                 <h1>Edit Barang</h1>
                 <span>
-                    Edit Data Inventaris Laboratorium IOT
-                </span>
+                        {dataUser?.username || "User"}
+                    </span>
             </header>
 
             <section className="edit-body">
@@ -113,7 +138,13 @@ const EditInventaris = () => {
                         </div>
                         <div className="edit-form-group">
                             <label>Lokasi</label>
-                            <input type="text" value={lokasi} onChange={(e) => setLokasi(e.target.value)} required/>
+                            <select value={lokasi} onChange={(e) => setLokasi(e.target.value)} required>
+                                <option value="">Pilih Lokasi</option>
+                                <option value="Ruang Praktikum">Ruang Praktikum</option>
+                                <option value="Laboratorium IoT 1">Laboratorium IoT 1</option>
+                                <option value="Laboratorium IoT 2">Laboratorium IoT 2</option>
+                                <option value="Gudang Peralatan">Gudang Peralatan</option>
+                            </select>
                         </div>
                         <div className="edit-form-group">
                             <label>Tanggal Masuk</label>
@@ -121,9 +152,15 @@ const EditInventaris = () => {
                         </div>
                         <div className="edit-form-group">
                             <label>Petugas</label>
-                            <input type="text" value={petugas} onChange={(e) => setPetugas(e.target.value)} required/>
+                             <select value={petugas} onChange={(e) => setPetugas(e.target.value)} required>
+                                <option value="">Pilih Petugas</option>
+                                {daftarPetugas.map((user) => (
+                                    <option key={user.id} value={user.id}>
+                                        {user.username}
+                                    </option>
+                                    ))}
+                                </select>
                         </div>
-
                         <div className="edit-form-action">
                             <button type="button" className="edit-batal-button" onClick={() => navigate("/inventaris")}>
                                 Batal

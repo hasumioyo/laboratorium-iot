@@ -3,6 +3,9 @@ import "./Sidebar.css";
 
 const Sidebar = () => {
     const navigate = useNavigate();
+    const user = sessionStorage.getItem("user");
+    const dataUser = user ? JSON.parse(user) : null;
+    
 
     const handleLogout = () => {
         localStorage.removeItem("user");
@@ -21,6 +24,12 @@ const Sidebar = () => {
                 <button className="menu-item" onClick={() => navigate("/dashboard")}><i className="fas fa-home"></i>Dashboard</button>
                 <p className="menu-title">MENU</p>
                 <button className="menu-item" onClick={() => navigate("/inventaris")}><i className="fas fa-archive"></i>Manajemen Inventaris</button>
+                {dataUser?.level === "Admin" && (
+                    <button className="menu-item" onClick={() => navigate("/pengguna")}>
+                            <i className="fas fa-users"></i>
+                            Manajemen Pengguna
+                    </button>
+                )}
             </nav>
             <button className="logout-button" data-bs-toggle="modal" data-bs-target="#logoutModal"><i className="fas fa-sign-out-alt"></i> Logout</button>
             
